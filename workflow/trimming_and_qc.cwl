@@ -14,7 +14,7 @@ inputs:
 
 steps:
   download_fastq:
-    run: ../tool/curl.cwl
+    run: https://github.com/suecharo/test-workflow/raw/master/tool/curl.cwl
     in:
       download_url: fastq_url
       downloaded_file_name:
@@ -25,7 +25,7 @@ steps:
       - downloaded_file
       - stderr_log
   qc_fastq:
-    run: ../tool/fastqc.cwl
+    run: https://github.com/suecharo/test-workflow/raw/master/tool/fastqc.cwl
     in:
       nthreads: nthreads
       fastq: download_fastq/downloaded_file
@@ -38,7 +38,7 @@ steps:
       - stdout_log
       - stderr_log
   trimming:
-    run: ../tool/trimmomatic_se.cwl
+    run: https://github.com/suecharo/test-workflow/raw/master/tool/trimmomatic_se.cwl
     in:
       nthreads: nthreads
       fastq: download_fastq/downloaded_file
@@ -51,7 +51,7 @@ steps:
       - stdout_log
       - stderr_log
   qc_trimed_fastq:
-    run: ../tool/fastqc.cwl
+    run: https://github.com/suecharo/test-workflow/raw/master/tool/fastqc.cwl
     in:
       nthreads: nthreads
       fastq: trimming/trimed_fastq

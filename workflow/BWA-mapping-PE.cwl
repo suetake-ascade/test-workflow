@@ -20,7 +20,7 @@ inputs:
 
 steps:
   download_fastq1:
-    run: ../my_tools/curl.cwl
+    run: ../tool/curl.cwl
     in:
       download_url: fastq1_url
       downloaded_file_name:
@@ -31,7 +31,7 @@ steps:
       - downloaded_file
       - stderr_log
   download_fastq2:
-    run: ../my_tools/curl.cwl
+    run: ../tool/curl.cwl
     in:
       download_url: fastq2_url
       downloaded_file_name:
@@ -42,7 +42,7 @@ steps:
       - downloaded_file
       - stderr_log
   download_fasta:
-    run: ../my_tools/curl.cwl
+    run: ../tool/curl.cwl
     in:
       download_url: fasta_url
       downloaded_file_name:
@@ -53,7 +53,7 @@ steps:
       - downloaded_file
       - stderr_log
   qc_fastq1:
-    run: ../my_tools/fastqc.cwl
+    run: ../tool/fastqc.cwl
     in:
       nthreads: nthreads
       fastq: download_fastq1/downloaded_file
@@ -66,7 +66,7 @@ steps:
       - stdout_log
       - stderr_log
   qc_fastq2:
-    run: ../my_tools/fastqc.cwl
+    run: ../tool/fastqc.cwl
     in:
       nthreads: nthreads
       fastq: download_fastq2/downloaded_file
@@ -79,7 +79,7 @@ steps:
       - stdout_log
       - stderr_log
   trimming:
-    run: ../my_tools/trimmomatic_pe.cwl
+    run: ../tool/trimmomatic_pe.cwl
     in:
       nthreads: nthreads
       fastq1: download_fastq1/downloaded_file
@@ -96,7 +96,7 @@ steps:
       - stdout_log
       - stderr_log
   qc_trimed_fastq1:
-    run: ../my_tools/fastqc.cwl
+    run: ../tool/fastqc.cwl
     in:
       nthreads: nthreads
       fastq: trimming/trimed_fastq1P
@@ -109,7 +109,7 @@ steps:
       - stdout_log
       - stderr_log
   qc_trimed_fastq2:
-    run: ../my_tools/fastqc.cwl
+    run: ../tool/fastqc.cwl
     in:
       nthreads: nthreads
       fastq: trimming/trimed_fastq2P
@@ -122,7 +122,7 @@ steps:
       - stdout_log
       - stderr_log
   bwa_index_build:
-    run: ../my_tools/bwa_index.cwl
+    run: ../tool/bwa_index.cwl
     in:
       fasta: download_fasta/downloaded_file
       stdout_log_file_name:
@@ -138,7 +138,7 @@ steps:
       - stdout_log
       - stderr_log
   bwa_mapping:
-    run: ../my_tools/bwa_mem_pe.cwl
+    run: ../tool/bwa_mem_pe.cwl
     in:
       nthreads: nthreads
       fasta: download_fasta/downloaded_file
@@ -155,7 +155,7 @@ steps:
       - sam
       - stderr_log
   sam2bam:
-    run: ../my_tools/samtools_sam2bam.cwl
+    run: ../tool/samtools_sam2bam.cwl
     in:
       sam: bwa_mapping/sam
       stderr_log_file_name:
@@ -164,7 +164,7 @@ steps:
       - bam
       - stderr_log
   mark_duplicates:
-    run: ../my_tools/picard_mark_duplicates.cwl
+    run: ../tool/picard_mark_duplicates.cwl
     in:
       bam: sam2bam/bam
       stdout_log_file_name:
@@ -177,7 +177,7 @@ steps:
       - stdout_log
       - stderr_log
   sort_bam:
-    run: ../my_tools/picard_sort_bam.cwl
+    run: ../tool/picard_sort_bam.cwl
     in:
       bam: mark_duplicates/marked_bam
       stdout_log_file_name:
