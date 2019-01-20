@@ -5,6 +5,20 @@ requirements:
   InlineJavascriptRequirement: {}
   DockerRequirement:
     dockerPull: quay.io/biocontainers/bwa:0.7.15--1
+  InitialWorkDirRequirement:
+    listing:
+      - entry: $(inputs.fasta)
+        entryname: $(inputs.fasta.basename)
+      - entry: $(inputs.amb)
+        entryname: $(inputs.amb.basename)
+      - entry: $(inputs.ann)
+        entryname: $(inputs.ann.basename)
+      - entry: $(inputs.bwt)
+        entryname: $(inputs.bwt.basename)
+      - entry: $(inputs.pac)
+        entryname: $(inputs.pac.basename)
+      - entry: $(inputs.sa)
+        entryname: $(inputs.sa.basename)
 
 baseCommand: [bwa, mem, -K, "100000000", -Y, -p]
 arguments:
@@ -19,12 +33,6 @@ inputs:
       prefix: -t
   fasta:
     type: File
-    secondaryFiles:
-      - $(inputs.amb)
-      - $(inputs.ann)
-      - $(inputs.bwt)
-      - $(inputs.pac)
-      - $(inputs.sa)
   amb:
     type: File
   ann:
