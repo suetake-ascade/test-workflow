@@ -16,4 +16,4 @@ cwltool --outdir output ./workflow/trimming_and_qc.cwl ./job/trimming_and_qc_job
 
 (Visualize at 2019-1-20 using CWL Viewer https://view.commonwl.org)
 
-[![trimming_and_qc.cwl](https://github.com/suecharo/test-workflow/blob/images/graph.png "trimming_and_qc.cwl")](https://view.commonwl.org/workflows/github.com/suecharo/test-workflow/blob/master/workflow/trimming_and_qc.cwl)
+[![trimming_and_qc.cwl](https://github.com/suecharo/test-workflow/raw/master/image/graph.png "trimming_and_qc.cwl")](https://view.commonwl.org/workflows/github.com/suecharo/test-workflow/blob/master/workflow/trimming_and_qc.cwl)
