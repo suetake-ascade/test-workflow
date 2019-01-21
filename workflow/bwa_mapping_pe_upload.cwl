@@ -253,16 +253,16 @@ steps:
       stderr_log_file_name:
         default: s3_upload_stderr.log
     out: []
-  echo_s3_upload_path:
-    run: https://github.com/suecharo/test-workflow/raw/master/tool/echo_s3_upload_path.cwl
+  echo_s3_upload_url:
+    run: https://github.com/suecharo/test-workflow/raw/master/tool/echo_s3_upload_url.cwl
     in:
       s3_bucket: s3_bucket
       s3_upload_dir_name: s3_upload_dir_name
       file_name:
-        default: s3_upload_path.txt
-    out: [s3_upload_path]
+        default: upload_url.txt
+    out: [upload_url]
 
 outputs:
-  s3_upload_path:
+  upload_url:
     type: File
-    outputSource: echo_s3_upload_path/s3_upload_path
+    outputSource: echo_s3_upload_url/upload_url

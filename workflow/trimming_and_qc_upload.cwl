@@ -1,8 +1,6 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
-requirements:
-  MultipleInputFeatureRequirement: {}
 doc: Use fastq file as input and do trimming and quality check. Quality checks are done before trimming and after trimming.
 
 inputs:
@@ -106,9 +104,9 @@ steps:
       s3_upload_dir_name: s3_upload_dir_name
       file_name:
         default: upload_url.txt
-    out: [s3_upload_url]
+    out: [upload_url]
 
 outputs:
-  s3_upload_url:
+  upload_url:
     type: File
-    outputSource: echo_s3_upload_url/s3_upload_url
+    outputSource: echo_s3_upload_url/upload_url
