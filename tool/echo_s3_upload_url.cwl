@@ -17,6 +17,6 @@ inputs:
     type: string
 
 outputs:
-  s3_upload_url:
+  upload_url:
     type: stdout
 stdout: $(inputs.file_name)
