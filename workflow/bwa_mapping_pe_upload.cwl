@@ -1,6 +1,8 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
+requirements:
+  MultipleInputFeatureRequirement: {}
 doc: BWA-mapping-PE is a mapping workflow using BWA for Peared-end reads. It receives two fastq files and one reference genome. Please enter download link of fastq files and reference genome. The reference genome will be indexed by BWA. Trimming, QC and bam sort will do too. QC result and sam / bam file will be output.
 
 inputs:
@@ -24,7 +26,7 @@ inputs:
   s3_bucket:
     type: string
   s3_upload_dir_name:
-    type: string?
+    type: string
     default: cwl_upload
 
 steps:

@@ -1,6 +1,8 @@
 #!/usr/bin/env cwl-runner
 cwlVersion: v1.0
 class: Workflow
+requirements:
+  MultipleInputFeatureRequirement: {}
 doc: Use fastq file as input and do trimming and quality check. Quality checks are done before trimming and after trimming.
 
 inputs:
@@ -18,7 +20,7 @@ inputs:
   s3_bucket:
     type: string
   s3_upload_dir_name:
-    type: string?
+    type: string
     default: cwl_upload
 
 steps:
