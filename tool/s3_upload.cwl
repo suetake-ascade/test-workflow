@@ -4,7 +4,7 @@ class: CommandLineTool
 requirements:
   InlineJavascriptRequirement: {}
   DockerRequirement:
-    dockerPull: suecharo/s3_upload
+    dockerPull: mesosphere/aws-cli
   EnvVarRequirement:
     envDef:
       - envName: AWS_ACCESS_KEY_ID
@@ -13,12 +13,10 @@ requirements:
         envValue: $(inputs.aws_secret_access_key)
   InitialWorkDirRequirement:
     listing: $(inputs.upload_file_list)
-baseCommand: [/bin/sh, /tmp/s3_upload.sh]
+baseCommand: [s3, cp, --recursive]
 arguments: [
   {valueFrom: "${return inputs.upload_file_list[0].dirname;}"},
-  $(inputs.endpoint),
-  $(inputs.s3_bucket),
-  $(inputs.s3_upload_dir),
+  s3://$(inputs.s3_bucket)/$(inputs.s3_upload_dir_name)/,
 ]
 
 inputs:
@@ -28,24 +26,20 @@ inputs:
     type: string
   upload_file_list:
     type: File[]
-  endpoint:
-    type: string?
-    default: s3.amazonaws.com
   s3_bucket:
     type: string
-  s3_upload_dir:
+  s3_upload_dir_name:
     type: string?
     default: sapporo_upload
-  upload_url_file_name:
-    type: string?
-    default: upload_url.txt
+  stdout_log_file_name:
+    type: string
   stderr_log_file_name:
     type: string
 
 outputs:
-  upload_url:
+  stdout_log:
     type: stdout
   stderr_log:
     type: stderr
-stdout: $(inputs.upload_url_file_name)
+stdout: $(inputs.stdout_log_file_name)
 stderr: $(inputs.stderr_log_file_name)
