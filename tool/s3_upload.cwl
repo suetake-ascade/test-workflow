@@ -36,8 +36,9 @@ inputs:
   s3_upload_dir:
     type: string?
     default: sapporo_upload
-  stdout_log_file_name:
-    type: string
+  upload_url_file_name:
+    type: string?
+    default: upload_url.txt
   stderr_log_file_name:
     type: string
 
@@ -46,5 +47,5 @@ outputs:
     type: stdout
   stderr_log:
     type: stderr
-stdout: upload_url.txt
+stdout: $(inputs.upload_url_file_name)
 stderr: $(inputs.stderr_log_file_name)

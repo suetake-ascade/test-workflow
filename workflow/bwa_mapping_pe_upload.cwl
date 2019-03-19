@@ -254,11 +254,12 @@ steps:
       endpoint: endpoint
       s3_bucket: s3_bucket
       s3_upload_dir: s3_upload_dir
-      stdout_log_file_name:
-        default: s3_upload_stdout.log
+      upload_url_file_name:
+        default: upload_url.txt
       stderr_log_file_name:
         default: s3_upload_stderr.log
-    out: [upload_url]
+    out:
+      - upload_url
 
 outputs:
   upload_url:
