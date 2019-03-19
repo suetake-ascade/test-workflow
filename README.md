@@ -9,7 +9,7 @@ Workflows written in common workflow language (CWL)
 To run a workflow named trimming_and_qc.cwl, type as follows:
 
 ```bash
-cwltool --outdir output ./workflow/trimming_and_qc.cwl ./job/trimming_and_qc_job.cwl
+cwltool --outdir output ./workflow/trimming_and_qc.cwl ./job/trimming_and_qc.cwl
 ```
 
 # Visualize trimming_and_qc.cwl
