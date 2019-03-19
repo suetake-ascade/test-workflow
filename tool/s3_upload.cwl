@@ -13,7 +13,7 @@ requirements:
         envValue: $(inputs.aws_secret_access_key)
   InitialWorkDirRequirement:
     listing: $(inputs.upload_file_list)
-baseCommand: [/bin/sh, /tmp/s3_upload.sh]
+baseCommand: [/bin/sh, /opt/s3_upload.sh]
 arguments: [
   {valueFrom: "${return inputs.upload_file_list[0].dirname;}"},
   $(inputs.endpoint),

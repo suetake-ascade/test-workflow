@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eux
 upload_dir=$1
 endpoint=$2
 s3_bucket=$3
