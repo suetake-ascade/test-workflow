@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -eux
 upload_dir=$1
 endpoint=$2

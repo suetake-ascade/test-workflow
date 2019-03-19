@@ -6,3 +6,4 @@ s3_upload_dir_name: string # default value of type "string". (optional)
 s3_bucket: string # type "string"
 aws_secret_access_key: string # type "string"
 aws_access_key_id: string # type "string"
+endpoint: s3.amazonaws.com
